@@ -28,8 +28,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <span>SkidSteer<span className="text-primary">Compare</span></span>
             </a>
             <nav className="flex items-center gap-6 text-sm text-muted-foreground">
-              <a href="/" className="hover:text-foreground transition-colors">All Machines</a>
-              <a href="/models" className="hover:text-foreground transition-colors">Models</a>
+              <a href="/" className="hover:text-foreground transition-colors">Compare</a>
+              <a href="/brands/bobcat/filters" className="hover:text-foreground transition-colors">Filters</a>
             </nav>
           </div>
         </header>
