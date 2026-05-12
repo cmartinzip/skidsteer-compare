@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils"
 
 const SPEC_ROWS = [
   { key: "type", label: "Type" },
+  { key: "liftPath", label: "Lift Path" },
   { key: "ratedOperatingCapacity", label: "Rated Operating Capacity", unit: "lbs" },
   { key: "tippingLoad", label: "Tipping Load", unit: "lbs" },
   { key: "engineHp", label: "Engine HP", unit: "HP" },

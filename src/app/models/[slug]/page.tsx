@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation"
 import { machines } from "@/lib/data"
 import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, Gauge, Weight, Zap, Droplets, Ruler, Rocket } from "lucide-react"
+import { ArrowLeft, Gauge, Weight, Zap, Droplets, Ruler, Rocket, ArrowUpDown } from "lucide-react"
 import type { Metadata } from "next"
 
 export function generateStaticParams() {
@@ -135,6 +135,19 @@ export default function ModelPage({ params }: { params: { slug: string } }) {
           label="Bucket Width"
           value={`${machine.bucketWidth}"`}
         />
+        <Stat
+          icon={<ArrowUpDown className="size-3.5" />}
+          label="Lift Path"
+          value={machine.liftPath}
+        />
+        {machine.msrp && (
+          <Stat
+            icon={<Gauge className="size-3.5" />}
+            label="MSRP (Base)"
+            value={`$${machine.msrp.toLocaleString()}`}
+            highlight
+          />
+        )}
       </div>
 
       {/* Similar machines */}

@@ -122,6 +122,27 @@ const columns: ColumnDef<SkidSteer>[] = [
     ),
   },
   {
+    accessorKey: "liftPath",
+    header: "Lift Path",
+    cell: ({ getValue }) => {
+      const val = getValue() as string
+      return (
+        <Badge
+          variant="secondary"
+          className={cn(
+            "text-xs",
+            val === "Vertical"
+              ? "bg-blue-500/10 text-blue-400 border-blue-500/20"
+              : "bg-zinc-700/50 text-zinc-300 border-zinc-600/30"
+          )}
+        >
+          {val}
+        </Badge>
+      )
+    },
+    enableSorting: false,
+  },
+  {
     accessorKey: "priceRange",
     header: "Price Range",
     cell: ({ getValue }) => (

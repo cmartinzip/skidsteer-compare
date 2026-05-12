@@ -11,6 +11,7 @@ export function HomeClient() {
   const {
     selectedBrands,
     selectedType,
+    selectedLiftPath,
     minRoc, maxRoc,
     minHp, maxHp,
   } = useFilters()
@@ -19,11 +20,12 @@ export function HomeClient() {
     return machines.filter((m) => {
       if (selectedBrands.length > 0 && !selectedBrands.includes(m.brand)) return false
       if (selectedType && m.type !== selectedType) return false
+      if (selectedLiftPath && m.liftPath !== selectedLiftPath) return false
       if (m.ratedOperatingCapacity < minRoc || m.ratedOperatingCapacity > maxRoc) return false
       if (m.engineHp < minHp || m.engineHp > maxHp) return false
       return true
     })
-  }, [selectedBrands, selectedType, minRoc, maxRoc, minHp, maxHp])
+  }, [selectedBrands, selectedType, selectedLiftPath, minRoc, maxRoc, minHp, maxHp])
 
   const toggleCompare = (slug: string) => {
     setCompareIds((prev) =>

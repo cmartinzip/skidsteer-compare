@@ -2,6 +2,7 @@
 
 import { parseAsArrayOf, parseAsString, parseAsInteger, useQueryState } from "nuqs"
 import { brands, types, machines } from "@/lib/data"
+import type { LiftPath } from "@/lib/data"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -18,6 +19,7 @@ export function useFilters() {
     parseAsArrayOf(parseAsString).withDefault([])
   )
   const [selectedType, setSelectedType] = useQueryState("type", parseAsString.withDefault(""))
+  const [selectedLiftPath, setSelectedLiftPath] = useQueryState("lift", parseAsString.withDefault(""))
   const [minRoc, setMinRoc] = useQueryState("minRoc", parseAsInteger.withDefault(MIN_ROC))
   const [maxRoc, setMaxRoc] = useQueryState("maxRoc", parseAsInteger.withDefault(MAX_ROC))
   const [minHp, setMinHp] = useQueryState("minHp", parseAsInteger.withDefault(MIN_HP))
@@ -26,6 +28,7 @@ export function useFilters() {
   const resetAll = () => {
     setSelectedBrands([])
     setSelectedType("")
+    setSelectedLiftPath("")
     setMinRoc(MIN_ROC)
     setMaxRoc(MAX_ROC)
     setMinHp(MIN_HP)
@@ -35,6 +38,7 @@ export function useFilters() {
   const hasFilters =
     selectedBrands.length > 0 ||
     selectedType !== "" ||
+    selectedLiftPath !== "" ||
     minRoc !== MIN_ROC ||
     maxRoc !== MAX_ROC ||
     minHp !== MIN_HP ||
@@ -43,6 +47,7 @@ export function useFilters() {
   return {
     selectedBrands, setSelectedBrands,
     selectedType, setSelectedType,
+    selectedLiftPath, setSelectedLiftPath,
     minRoc, setMinRoc,
     maxRoc, setMaxRoc,
     minHp, setMinHp,
@@ -56,6 +61,7 @@ export function Filters() {
   const {
     selectedBrands, setSelectedBrands,
     selectedType, setSelectedType,
+    selectedLiftPath, setSelectedLiftPath,
     minRoc, setMinRoc,
     maxRoc, setMaxRoc,
     minHp, setMinHp,
@@ -99,6 +105,27 @@ export function Filters() {
               )}
             >
               {t === "Compact Track Loader" ? "Compact Track Loader (CTL)" : "Skid Steer Loader (SSL)"}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Lift Path */}
+      <div>
+        <p className="text-xs text-muted-foreground mb-2 uppercase tracking-wider">Lift Path</p>
+        <div className="flex flex-col gap-1.5">
+          {(["Radial", "Vertical"] as LiftPath[]).map((lp) => (
+            <button
+              key={lp}
+              onClick={() => setSelectedLiftPath(selectedLiftPath === lp ? "" : lp)}
+              className={cn(
+                "text-left text-sm px-3 py-1.5 rounded-md transition-colors border",
+                selectedLiftPath === lp
+                  ? "bg-blue-500/10 border-blue-500/30 text-blue-400"
+                  : "border-transparent text-muted-foreground hover:text-foreground hover:bg-secondary"
+              )}
+            >
+              {lp} Lift
             </button>
           ))}
         </div>
