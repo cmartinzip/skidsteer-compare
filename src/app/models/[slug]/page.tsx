@@ -150,6 +150,22 @@ export default function ModelPage({ params }: { params: { slug: string } }) {
         )}
       </div>
 
+      {/* Filter cross-reference CTA */}
+      <div className="mb-10 rounded-lg border border-amber-500/20 bg-amber-500/5 px-5 py-4 flex items-center justify-between gap-4">
+        <div>
+          <div className="font-semibold text-sm">Filter Cross Reference</div>
+          <p className="text-xs text-muted-foreground mt-0.5">
+            OEM part numbers + Wix, Baldwin, Donaldson, Fleetguard equivalents for the {machine.model}.
+          </p>
+        </div>
+        <a
+          href={`/filters/${machine.slug}`}
+          className="shrink-0 inline-flex items-center gap-1.5 text-sm font-medium text-amber-400 hover:text-amber-300 transition-colors"
+        >
+          View Filters →
+        </a>
+      </div>
+
       {/* Similar machines */}
       {similar.length > 0 && (
         <div>
